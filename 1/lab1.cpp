@@ -251,6 +251,10 @@ void e7()
     cout << M * N << endl;
 }
 
+void e8(){
+    cout << "Hola Ivan" << endl;
+}
+
 int main(int argc, char *argv[])
 {
     if (argc < 2)
@@ -281,9 +285,9 @@ int main(int argc, char *argv[])
         case 7:
             e7();
             break;
-        // case 8 :
-        //     e8();
-        //     break;
+        case 8 :
+            e8();
+            break;
         // case 9 :
         //     e9();
         //     break;
