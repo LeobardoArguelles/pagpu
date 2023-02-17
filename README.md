@@ -1,6 +1,10 @@
 # Programación Avanzada en GPU
 Ejercicios de laboratorio para la materia ICC161 - Programación Avanzada en GPU.
 
+Links del Proyecto Final
+
+- Overleaf: [https://www.overleaf.com/7563619419qfhygdjqdsvq](https://www.overleaf.com/7563619419qfhygdjqdsvq)
+
 Links de la práctica:
 
 1) **Práctica 01: Acondicionamiento**
