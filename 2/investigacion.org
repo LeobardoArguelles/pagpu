@@ -1,30 +1,40 @@
+#+TITLE: Preguntas de investigación
+#+AUTHOR: Leobardo Argüelles
 
 * QUÉ ES MEMORIA COMPARTIDA
 Es un tipo de memoria ubicada "en el chip". Sus datos pueden ser accedidos a altas velocidades,
-de forma paralela. Las ubicaciones de memoria compartida de asignan a bloques de hilos, así que
+de forma paralela. Las ubicaciones de memoria compartida se asignan a bloques de hilos, así que
 todos los hilos de un mismo bloque tienen acceso a los mismos datos. Esto hace que la memoria
-compartida sea una forma en que los hilos pueden cooperar eficientemente.
+compartida sea una forma en que los hilos pueden cooperar eficientemente, lo que es útil en
+varias aplicaciones como:
++ Cachés manejados por el usuario
++ Algoritmos paralelos cooperativos de alto rendimiento
 
 La memoria compartida está diseñada para compartir grandes volúmenes de data en un bloque de
 manera eficiente. Comparada con otras memorias:
 + Tiene menos latencia que la memoria global, ya que vive dentro del chip del procesador.
+  Con las condiciones adecuadas, puede tener hasta 100 veces menos latencia.
 + Tiene más latencia que los registros, ya que necesita hacer una operación /load/.
 
  [[./images/memoria_compartida.png]]
 
+ https://developer.nvidia.com/blog/using-shared-memory-cuda-cc/
+
 * QUÉ ES MEMORIA GLOBAL
-Es la memoria del dispositivo, y puede ser escrita o leída tanto por el /host/, como por el /dispositivo/.
+Es la memoria del dispositivo, y puede ser escrita o leída tanto por el /host/, como por el /dispositivo/,
+de ahí que sea *global*.
 Es en esta memoria donde el GPU recibe los datos transferidos
 desde el /host/. Suele ser implementada con DRAM y se ubica "fuera del chip", por lo que presenta
 alta latencia y un ancho de banda finito. Aquí se colocan las variables globales del programa.
-Es "grande pero lenta".
+Comparada con registros, memoria compartida, y memoria constante, es más grande, pero más lenta.
 
  [[./images/memoria_global.png]]
 
 * QUÉ ES MEMORIA CONSTANTE
 Puede ser leída o escrita por el /host/, pero el dispositivo solo puede leerla. Sin embargo, estas
 lecturas son de corta latencia, y un gran ancho de banda. Como su nombre lo indica, es aquí donde
-se almacenan las variables constantes.
+se almacenan las variables constantes, las cuales no podrán ser modificadas por los hilos mientras
+ejecuta el kernel.
 
 Esta memoria tiene la posibilidad de tener accesos extremadamente rápidos y paralelos, siempre y
 cuando se den patrones de acceso correctos.
