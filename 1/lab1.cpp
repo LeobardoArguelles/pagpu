@@ -116,6 +116,15 @@ double myPow(double base, double exp)
     return pow(base, exp);
 }
 
+string repeat(int n,string a){
+    /*Simulates a strep function*/
+    string b  ;
+    for(int i= 0; i <=n; i++){
+        b = a + b;
+    }
+    return b;
+}
+
 template <typename T>
 T func(T num)
 {
@@ -251,6 +260,151 @@ void e7()
     cout << M * N << endl;
 }
 
+void e8(){
+
+    /*Caja---------------------------------------------------------------------*/
+     for (int i =1; i<=9; i++){
+       if(i ==1 || i ==9){
+          for(int j = 1; j<= 9; j++)
+             cout<<"*";
+        }else{
+           cout<<"*";
+           for(int x = 1; x<=7; x++){
+               cout<<" ";
+           }
+           cout<<"*";
+        }
+       cout<<endl;
+    }
+
+    /*Diamante----------------------------------------------------------------*/
+    for(int i = 1; i<= 5; i++){
+          for(int j = 1; j <=5-i; j++ ){
+                cout << " ";
+            }
+            if (i ==1){
+                cout <<"*";
+                cout <<endl;
+                
+            }else{
+                cout<<"*";
+                for(int s = 1; s<= 2*(i-1)-1; s++){
+                    cout<<" ";
+                }
+                cout<<"*";
+                cout << endl;
+            }
+                
+         }
+       
+    for(int i = 1; i<= 4; i++){
+        for(int j = 1; j <=i; j++ ){
+            cout << " ";
+        }
+        if (i == 4){
+            cout <<"*";
+            cout <<endl;
+        }else{
+             cout<<"*";
+             for(int s = 1; s<= 4 -(2*(i-1)-1); s++){
+                 cout<<" ";
+            }
+                cout<<"*";
+                cout << endl;
+            }
+    }
+    
+    /*Flecha-----------------------------------------------------------------------*/
+    for(int i = 0 ; i<= 9; i++){
+        if(i <= 2){
+            if(i ==0){
+            cout<<repeat(3," ");
+            cout<<"*";
+            cout<<endl;
+            }else{
+                cout<<repeat(3-i," ");
+                cout<<repeat(i*2,"*");
+                cout<<endl;
+            }
+        }else{
+            cout<<repeat(3," ");
+            cout<<"*";
+            cout<<endl;
+        }
+    }
+
+    /*Circulo-------------------------------------------------------------------------*/
+     cout<<repeat(2," ");
+    cout<<repeat(2,"*");
+    cout<<endl;
+    cout<<" ";
+    cout<<"*";
+    cout<<repeat(4," ");
+    cout<<"*";
+    cout<<endl;
+    for(int i = 0; i<=4;i++){
+        cout<<"*";
+        cout<<repeat(6," ");
+        cout<<"*";
+        cout<<endl;
+    }
+    cout<<" ";
+    cout<<"*";
+    cout<<repeat(4," ");
+    cout<<"*";
+    cout<<endl;
+    cout<<repeat(2," ");
+    cout<<repeat(2,"*");
+    cout<<endl;
+
+}
+
+void e9()
+{
+    for(int i = 0 ; i<=10; i++){
+         cout<<endl;
+        cout<<repeat(i,"*");
+    }
+    cout<<endl;
+
+    for(int i = 0 ; i<=10; i++){
+         cout<<endl;
+        cout<<repeat((10-i),"*");
+    }
+
+    for(int i = 0 ; i<=10; i++){
+        cout<<endl;
+        cout<<repeat(i," ");
+        cout<<repeat((10-i),"*");
+    }
+    cout<<endl;
+
+    for(int i = 0 ; i<=10; i++){
+        cout<<endl;
+        cout<<repeat(9-i," ");
+        cout<<repeat(i,"*");
+    }
+}   
+
+void e10()
+{
+    int n;
+    cout << "Ingrese el tamano del triangulo: ";
+    cin >> n;
+    
+    for(int i = 0 ; i<= n-1; i++){
+        if(i == 0){
+            cout<<repeat(n," ");
+            cout<<"*";
+            cout<<endl;
+        }else{
+            cout<<repeat(n-i," ");
+            cout<<repeat(i*2,"*");
+            cout<<endl;
+        }
+    }
+}
+
 int main(int argc, char *argv[])
 {
     if (argc < 2)
@@ -281,15 +435,15 @@ int main(int argc, char *argv[])
         case 7:
             e7();
             break;
-        // case 8 :
-        //     e8();
-        //     break;
-        // case 9 :
-        //     e9();
-        //     break;
-        // case 10 :
-        //     e10();
-        //     break;
+        case 8 :
+            e8();
+            break;
+        case 9 :
+            e9();
+            break;
+         case 10 :
+             e10();
+             break;
         default:
             cout << "Número de ejercicio inválido" << endl;
         }
