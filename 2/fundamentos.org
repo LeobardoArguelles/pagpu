@@ -1,0 +1,38 @@
+#+TITLE: Fundamentos
+#+AUTHOR: Leobardo Argüelles
+
+* TEMAS
++ CUDA
+  "Compute Unified Device Architecture" https://nvidia.custhelp.com/app/answers/detail/a_id/2132/~/what-is-cuda%3F
+
+  Lanzada en 2006, es una plataforma y un modelo de programación creado por NVIDIA. Cuenta con más de 150 librerías,
+  SDKs, y herramientas de perfilado y optimización que permiten aprovechar al máximo el poder de los GPUs.
+  https://blogs.nvidia.com/blog/2012/09/10/what-is-cuda-2/
+
+  Este modelo de programación provee una abstracción de la arquitectura del GPU que actúa como un puente entre una
+  aplicación y el hardware.
++ GPU
+  "Graphics processing unit"
+  Diseñada para el procesamiento en paralelo, originalmente fueron creados para acelerar el renderizado de
+  gráficos tridimensionales, pero poco a poco se volvieron herramientas más generales. Hoy se utilizan tanto para
+  gráficos como para áreas creativas, cómputo de alto desempeño, o aprendizaje profundo, entre otras.
+
+  https://www.intel.com/content/www/us/en/products/docs/processors/what-is-a-gpu.html
+
++ Qué es un bloque, cuadrícula, hilo
+  Un grupo de hilos es un bloque CUDA. Al mismo tiempo, estos bloques se agrupan en un /grid/.
+  Luego, el kernel ejectua como un /grid/ de bloques de hilos.
+
+ [[./images/cuda_grid.png]]
+
+El kernel ejecuta en un "dispositivo". Esto es un GPU que soporte CUDA. a su vez cada bloque corre dentro de un
+/streaming multiprocessor/, y cada hilo es asignado a un núcleo para que corran concurrentemente.
+
+CUDA exporen varias memorias del GPU al usuario:
++ Registros - Son privados para cada hilo.
++ Memoria compartida - Será revisada en la sección de resultados.
++ Memoria de solo lectura - Cada /streaming multiprocessor/ tiene un caché de instrucciones, memoria de texturas, caché RO, y memoria constante. Todas son de "solo lectura" para el dispositivo. La última es explicada en la sección de resultados.
++ Caché L2 - Compartido por todos los /streaming multiprocessors/, por lo que todos los hilos de cada bloque pueden accederla.
++ Memoria global - Será revisada en la sección de resultados.
+
+  https://developer.nvidia.com/blog/cuda-refresher-cuda-programming-model/
