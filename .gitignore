@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# Imágenes pesadas de la práctica tres
+3/imgs/
