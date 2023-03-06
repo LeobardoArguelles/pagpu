@@ -11,6 +11,10 @@ Links de la práctica:
   - Overleaf: [https://www.overleaf.com/4837414289zvrdvtppdbbg](https://www.overleaf.com/4837414289zvrdvtppdbbg)
   - Colab: [https://colab.research.google.com/drive/1ol0PLCb9GTfSXGU5BVz2eCvliWEKeFZF?usp=sharing](https://colab.research.google.com/drive/1ol0PLCb9GTfSXGU5BVz2eCvliWEKeFZF?usp=sharing)
 
-1) **Práctica 02: Características del Diapositivo**
+2) **Práctica 02: Características del Diapositivo**
   - Overleaf: [https://www.overleaf.com/7183774482hfvbtgmqtgpq](https://www.overleaf.com/7183774482hfvbtgmqtgpq)
   - Colab: [https://colab.research.google.com/drive/1_ujNgjreOlijnaU8rsr9yMJsRfq8K4eC?usp=sharing](https://colab.research.google.com/drive/1_ujNgjreOlijnaU8rsr9yMJsRfq8K4eC?usp=sharing)
+  
+3) **Práctica 03: Modelo de paralelismo en CUDA**
+  - Overleaf: [https://www.overleaf.com/2761653578xvvjqwpjwqrw](https://www.overleaf.com/2761653578xvvjqwpjwqrw)
+  - Colab: [https://colab.research.google.com/drive/1Mh1YLn1FB_bBumj8k_isOH_uzneB5AyO?usp=sharing](https://colab.research.google.com/drive/1Mh1YLn1FB_bBumj8k_isOH_uzneB5AyO?usp=sharing)
