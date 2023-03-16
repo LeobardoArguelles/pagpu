@@ -1,0 +1,22 @@
+
+* PUNTOS
++ Las imágenes son arreglos bidimensionales de pixeles.
++ Cada pixel tiene su propia "coordenada" dentro de un sistema x/y que determina su posición en la imagen.
++ Una manera de representar el color de un pixel es con el sistema RGB.
++ RGB significa "Rojo, verde, azul", por sus siglas en inglés.
++ La combinación de luces de estos colores pueden producir un amplio espectro de colores.
++ Cada pixel tiene una combinación RGB, donde cada componente toma un valor desde 0 hasta 255.
++ Para convertir una imagen a escala de grises, se puede aplicar la fórmula: L = r*0.21 + g*0.72 + b*0.07, donde r, g, y b son el valor RGB de cada pixel a transformar.
++ Al aplicar esta operación de forma paralela con un GPU a toda una imagen conlleva varias consideraciones.
+  - Los hilos pueden organizarse en un arreglo bidimensional. Esto genera un mapeo simple de hilos a datos.
+  - Sin embargo, un arreglo bidimensional en CUDA es "aplanado" en memoria siguiendo un orden de "filas primero". Esto significa que todas las filas del arreglo se colocan una al lado de la otra, secuencialmente en memoria.
+  - El punto anterior implica que es necesario acceder a cada pixel como si fuera un arreglo lineal. Para hacerlo hay que calcular:
+    1) El índice de la columna, usando threadIdx.x + blockIdx.x * blockDim.x
+    2) El índice de la fila, usando threadIdx.y + blockIdx.y * blockDim.y
+    3) El offset lineal, usando Fila*anchura + columna.
+
+* TEXTO
+* REFERENCIAS
++ Stanfor. (2018). "Introduction to Digital Images". Recuperado de: https://web.stanford.edu/class/cs101/image-1-introduction.html
+* FIGURAS
+[[./imgs/fundamentos/pixeles.png]]
