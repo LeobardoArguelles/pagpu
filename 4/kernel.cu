@@ -84,10 +84,25 @@ __host__ void vecMultiply(float* h_A, float* h_B, float* h_C, int m, int n, int 
     check(cudaFree(d_C));
 }
 
+__host__ void showMatrix(float* vector, int n, int m) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            printf("%-9.2f", vector[i * m + j]);
+        }
+        printf("\n");
+    }
+}
+
+__host__ void calcTime(clock_t start, clock_t end) {
+    double duration = ((double)end - start) / CLOCKS_PER_SEC;
+    printf("\nTime: %f", duration);
+}
+
 int main()
 {
     setlocale(LC_ALL, "");
     int m, n, p;
+    clock_t s, f;
 
     printf("Ingrese el tamaño de la matriz A (m x n): ");
     scanf("%d %d", &m, &n);
@@ -162,55 +177,32 @@ int main()
 
     if (metodo == 0) {
 
-        clock_t begin = clock();
+        s = clock();
 
         vecMultiply(h_A, h_B, h_C, m, n, p);
 
-        clock_t end = clock();
+        f = clock();
 
-        double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-
-        printf("\nEl tiempo transcurrido en GPU fue de %f segundos\n", time_spent);
+        calcTime(s, f);
 
     }
     else {
 
-        clock_t begin = clock();
+        s = clock();
 
         mmultiply_Sec(h_A, h_B, h_C, m, n, p);
 
-        clock_t end = clock();
+        f = clock();
 
-        double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-
-        printf("\nEl tiempo transcurrido en CPU fue de %f segundos\n", time_spent);
+        calcTime(s, f);
     }
 
-    for (int i = 0; i < m; i++) {
-        printf("%d ", i);
-        for (int j = 0; j < n; j++) {
-            printf("%f ", h_A[i * n + j]);
-        }
-        printf("\n");
-    }
-
-    for (int i = 0; i < n; i++) {
-        printf("%d ", i);
-        for (int j = 0; j < p; j++) {
-            printf("%f ", h_B[i * p + j]);
-        }
-        printf("\n");
-    }
-
-    for (int i = 0; i < m; i++) {
-        printf("%d ", i);
-        for (int j = 0; j < p; j++) {
-            printf("%f ", h_C[i * p + j]);
-        }
-        printf("\n");
-    }
-
-    // Matsu show array
+    printf("\nMatriz A:\n");
+    showMatrix(h_A, m, n);
+    printf("\nMatriz B:\n");
+    showMatrix(h_B, n, p);
+    printf("\nMatriz C:\n");
+    showMatrix(h_C, m, p);
 
     free(h_A);
     free(h_B);
