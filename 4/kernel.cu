@@ -139,6 +139,7 @@ int main()
         }
     }
     else {
+        srand(time(0));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 A[i][j] = (float)rand() / RAND_MAX * 9.0 + 1.0;
