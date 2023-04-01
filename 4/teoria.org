@@ -1,0 +1,19 @@
+
++ La razón de cómputo a accesos de memoria global es el número de cálculos de punto flotante que se realizan por cada acceso que se hizo en memoria global.
++ Actualmente un valor ideal para esta razón es de 48 operaciones por cada acceso.
++ La importancia de esto es que los accesos a memoria son la operación que más tarda en un programa acelerado por GPU, por lo que pueden limitar su velocidad.
++ CUDA provee acceso a memoria constante, global, compartida, y a los registros:
+  + Memoria constante: Puede ser escrita y leída por el host. Provee accesos de solo lectura muy rápidos para el device.
+  + Memoria global: Puede ser escrita y leída por el device.
+  + Memoria compartida: Existe en el chip, por lo que es accedida muy rápidamente y con baja latencia. Cada memoria de este tipo se asigna a un solo bloque de hilos, quienes la comparten.
+  + Registros: Existe en el chip, por lo que es accedida muy rápidamente y con baja latencia. Cada hilo tiene sus registros privados
++ Existen varios tipos de memoria para poder hacer una selección adecuada para maximizar el ratio de cómputo a accesos globales, lo que mejora el rendimiento de las aplicaciones.
+
+* TEXTO
+La optimización del rendimiento en aplicaciones aceleradas por GPU es un tema crítico en el ámbito de la computación paralela. Uno de los factores más importantes para lograr un buen rendimiento es el ratio de cómputo a accesos de memoria global.
+
+Este ratio se refiere al número de cálculos de punto flotante que se realizan por cada acceso que se hizo en memoria global. Actualmente, se considera un valor ideal para este ratio de 48 operaciones por cada acceso. La importancia de este valor radica en que los accesos a memoria son la operación que más tarda en un programa acelerado por GPU, por lo que pueden limitar la velocidad de ejecución de la aplicación.
+
+Para mejorar este ratio, CUDA provee acceso a varios tipos de memoria, cada uno con características específicas. La memoria constante, por ejemplo, puede ser escrita y leída por el host, y provee accesos de solo lectura muy rápidos para el device. La memoria global, por su parte, puede ser escrita y leída por el device. La memoria compartida existe en el chip, por lo que es accedida muy rápidamente y con baja latencia. Cada memoria de este tipo se asigna a un solo bloque de hilos, quienes la comparten. Por último, los registros existen en el chip y cada hilo tiene sus propios registros privados.
+
+La elección del tipo de memoria adecuado es crucial para maximizar el ratio de cómputo a accesos globales y, por ende, mejorar el rendimiento de las aplicaciones. En definitiva, la optimización del acceso a memoria es un factor crítico para obtener el máximo rendimiento en aplicaciones aceleradas por GPU, y la elección adecuada de la memoria puede marcar una gran diferencia.
