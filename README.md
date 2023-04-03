@@ -18,3 +18,10 @@ Links de la práctica:
 3) **Práctica 03: Modelo de paralelismo en CUDA**
   - Overleaf: [https://www.overleaf.com/2761653578xvvjqwpjwqrw](https://www.overleaf.com/2761653578xvvjqwpjwqrw)
   - Colab: [https://colab.research.google.com/drive/1Mh1YLn1FB_bBumj8k_isOH_uzneB5AyO?usp=sharing](https://colab.research.google.com/drive/1Mh1YLn1FB_bBumj8k_isOH_uzneB5AyO?usp=sharing)
+<<<<<<< HEAD
+=======
+  
+4) **Práctica 04: Multiplicación de matrices en CUDA**
+  - Overleaf: [https://www.overleaf.com/2411979666nptdycwgspbx](https://www.overleaf.com/2411979666nptdycwgspbx)
+  - Colab: [https://colab.research.google.com/drive/1mgPWA2M_F8x0mQhj9ulEr_alYeUv5QL-?usp=sharing](https://colab.research.google.com/drive/1mgPWA2M_F8x0mQhj9ulEr_alYeUv5QL-?usp=sharing)
+>>>>>>> main

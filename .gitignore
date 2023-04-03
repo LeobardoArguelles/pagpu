@@ -31,5 +31,12 @@
 *.out
 *.app
 
+<<<<<<< HEAD
 # Imágenes pesadas de la práctica tres
 3/imgs/
+# Archivos pesados
+proyecto/avance2/sudoku.csv
+proyecto/avance2/test/
+proyecto/avance2/test_cases/
+
+proyecto/avance2/venv/
