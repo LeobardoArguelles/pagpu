@@ -13,6 +13,7 @@ using namespace std;
 
 
 #define N 9
+#define UNASSIGNED 0
 #define dir "./test/rated/puzzles/"
 #define MAX_TEST 100
 
@@ -27,40 +28,73 @@ void print(int arr[N][N])
     }
 }
 
-// Checks whether it will be
-// legal to assign num to the
-// given row, col
-bool isSafe(int grid[N][N], int row,
-                    int col, int num)
+
+/* Returns a boolean which indicates whether
+an assigned entry in the specified row matches
+the given number. */
+bool UsedInRow(int grid[N][N], int row, int num)
 {
+    for (int col = 0; col < N; col++)
+        if (grid[row][col] == num)
+            return true;
+    return false;
+}
 
-    // Check if we find the same num
-    // in the similar row , we
-    // return false
-    for (int x = 0; x <= 8; x++)
-        if (grid[row][x] == num)
-            return false;
+/* Returns a boolean which indicates whether
+an assigned entry in the specified column
+matches the given number. */
+bool UsedInCol(int grid[N][N], int col, int num)
+{
+    for (int row = 0; row < N; row++)
+        if (grid[row][col] == num)
+            return true;
+    return false;
+}
 
-    // Check if we find the same num in
-    // the similar column , we
-    // return false
-    for (int x = 0; x <= 8; x++)
-        if (grid[x][col] == num)
-            return false;
+/* Returns a boolean which indicates whether
+an assigned entry within the specified 3x3 box
+matches the given number. */
+bool UsedInBox(int grid[N][N], int boxStartRow,
+               int boxStartCol, int num)
+{
+    for (int row = 0; row < 3; row++)
+        for (int col = 0; col < 3; col++)
+            if (grid[row + boxStartRow]
+                    [col + boxStartCol] ==
+                                       num)
+                return true;
+    return false;
+}
 
-    // Check if we find the same num in
-    // the particular 3*3 matrix,
-    // we return false
-    int startRow = row - row % 3,
-            startCol = col - col % 3;
+/* Returns a boolean which indicates whether
+it will be legal to assign num to the given
+row, col location. */
+bool isSafe(int grid[N][N], int row,
+            int col, int num)
+{
+    /* Check if 'num' is not already placed in
+    current row, current column
+    and current 3x3 box */
+    return !UsedInRow(grid, row, num)
+           && !UsedInCol(grid, col, num)
+           && !UsedInBox(grid, row - row % 3,
+                         col - col % 3, num)
+           && grid[row][col] == UNASSIGNED;
+}
 
-    for (int i = 0; i < 3; i++)
-        for (int j = 0; j < 3; j++)
-            if (grid[i + startRow][j +
-                            startCol] == num)
-                return false;
-
-    return true;
+/* Searches the grid to find an entry that is
+still unassigned. If found, the reference
+parameters row, col will be set the location
+that is unassigned, and true is returned.
+If no unassigned entries remain, false is returned. */
+bool FindUnassignedLocation(int grid[N][N],
+                            int& row, int& col)
+{
+    for (row = 0; row < N; row++)
+        for (col = 0; col < N; col++)
+            if (grid[row][col] == UNASSIGNED)
+                return true;
+    return false;
 }
 
 /* Takes a partially filled-in grid and attempts
@@ -68,70 +102,47 @@ to assign values to all unassigned locations in
 such a way to meet the requirements for
 Sudoku solution (non-duplication across rows,
 columns, and boxes) */
-bool solveSudoku(int grid[N][N], int row, int col)
+bool SolveSudoku(int grid[N][N])
 {
-    // Check if we have reached the 8th
-    // row and 9th column (0
-    // indexed matrix) , we are
-    // returning true to avoid
-    // further backtracking
-    if (row == N - 1 && col == N)
+    int row, col;
+
+    // If there is no unassigned location,
+    // we are done
+    if (!FindUnassignedLocation(grid, row, col))
+        // success!
         return true;
 
-    // Check if column value becomes 9 ,
-    // we move to next row and
-    // column start from 0
-    if (col == N) {
-        row++;
-        col = 0;
-    }
-
-    // Check if the current position of
-    // the grid already contains
-    // value >0, we iterate for next column
-    if (grid[row][col] > 0)
-        return solveSudoku(grid, row, col + 1);
-
-    for (int num = 1; num <= N; num++)
+    // Consider digits 1 to 9
+    for (int num = 1; num <= 9; num++)
     {
 
-        // Check if it is safe to place
-        // the num (1-9) in the
-        // given row ,col ->we
-        // move to next column
+        // Check if looks promising
         if (isSafe(grid, row, col, num))
         {
 
-        /* Assigning the num in
-            the current (row,col)
-            position of the grid
-            and assuming our assigned
-            num in the position
-            is correct	 */
+            // Make tentative assignment
             grid[row][col] = num;
 
-            // Checking for next possibility with next
-            // column
-            if (solveSudoku(grid, row, col + 1))
+            // Return, if success
+            if (SolveSudoku(grid))
                 return true;
-        }
 
-        // Removing the assigned num ,
-        // since our assumption
-        // was wrong , and we go for
-        // next assumption with
-        // diff num value
-        grid[row][col] = 0;
+            // Failure, unmake & try again
+            grid[row][col] = UNASSIGNED;
+        }
     }
+
+    // This triggers backtracking
     return false;
 }
+
 
 // Function that iterates over the directory ./test_cases and runs the program on each file
 // measuring the time it takes to solve the sudoku, storing the results in a file called
 // results.txt.
 // The function first reads how many numbers are in the first line of the file, and stores
 // the number in the variable "N". Then it creates a 2D array of size N*N and stores the
-// numbers in the file in the array. Finally, it calls the solveSudoku function and
+// numbers in the file in the array. Finally, it calls the SolveSudoku function and
 // measures the time it takes to solve the sudoku.
 // It then appends the time it took to solve the sudoku to the file with the results.
 // The function takes as input the number of tests to run and a file name to store the results.
@@ -197,7 +208,7 @@ void runTests(int tests, string file_name) {
             auto start = chrono::high_resolution_clock::now();
 
             // Solve the sudoku or print no solution
-            if (!solveSudoku(solved_grid, 0, 0))
+            if (!SolveSudoku(solved_grid))
                 cout << "No solution exists";
 
             // Stop the timer
@@ -292,7 +303,7 @@ void profile(string file_name, int file_number, ofstream *results) {
         auto start = chrono::high_resolution_clock::now();
 
         // Solve the sudoku or print no solution
-        if (!solveSudoku(solved_grid, 0, 0))
+        if (!SolveSudoku(solved_grid))
             cout << "No solution exists";
 
         // Stop the timer
