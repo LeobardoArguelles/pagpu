@@ -4,6 +4,7 @@ Ejercicios de laboratorio para la materia ICC161 - Programación Avanzada en GPU
 Links del Proyecto Final
 
 - Overleaf: [https://www.overleaf.com/7563619419qfhygdjqdsvq](https://www.overleaf.com/7563619419qfhygdjqdsvq)
+- Colab: [https://colab.research.google.com/drive/1CWbEPE3QU7WpzOWxhcL60vrKuR91B2y0?usp=sharing](https://colab.research.google.com/drive/1CWbEPE3QU7WpzOWxhcL60vrKuR91B2y0?usp=sharing)
 
 Links de la práctica:
 
