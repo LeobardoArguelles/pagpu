@@ -6,15 +6,17 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <math.h>
 
 namespace fs = std::filesystem;
 
 using namespace std;
 
 
-#define N 9
+#define N 16
 #define UNASSIGNED 0
-#define dir "./test/rated/puzzles/"
+// #define dir "./test/rated/puzzles/"
+#define dir "./test/16/"
 #define MAX_TEST 100
 
 /* A utility function to print grid */
@@ -27,7 +29,6 @@ void print(int arr[N][N])
         cout << endl;
     }
 }
-
 
 /* Returns a boolean which indicates whether
 an assigned entry in the specified row matches
@@ -52,13 +53,14 @@ bool UsedInCol(int grid[N][N], int col, int num)
 }
 
 /* Returns a boolean which indicates whether
-an assigned entry within the specified 3x3 box
+an assigned entry within the specified box
 matches the given number. */
 bool UsedInBox(int grid[N][N], int boxStartRow,
                int boxStartCol, int num)
 {
-    for (int row = 0; row < 3; row++)
-        for (int col = 0; col < 3; col++)
+    int length = sqrt(N);
+    for (int row = 0; row < length; row++)
+        for (int col = 0; col < length; col++)
             if (grid[row + boxStartRow]
                     [col + boxStartCol] ==
                                        num)
@@ -72,13 +74,14 @@ row, col location. */
 bool isSafe(int grid[N][N], int row,
             int col, int num)
 {
+    int length = sqrt(N);
     /* Check if 'num' is not already placed in
     current row, current column
     and current 3x3 box */
     return !UsedInRow(grid, row, num)
            && !UsedInCol(grid, col, num)
-           && !UsedInBox(grid, row - row % 3,
-                         col - col % 3, num)
+           && !UsedInBox(grid, row - row % length,
+                         col - col % length, num)
            && grid[row][col] == UNASSIGNED;
 }
 
@@ -113,7 +116,7 @@ bool SolveSudoku(int grid[N][N])
         return true;
 
     // Consider digits 1 to 9
-    for (int num = 1; num <= 9; num++)
+    for (int num = 1; num <= N; num++)
     {
 
         // Check if looks promising
@@ -208,6 +211,7 @@ void runTests(int tests, string file_name) {
             auto start = chrono::high_resolution_clock::now();
 
             // Solve the sudoku or print no solution
+            cout << "Solving " << file_name << endl;
             if (!SolveSudoku(solved_grid))
                 cout << "No solution exists";
 
@@ -293,7 +297,8 @@ void profile(string file_name, int file_number, ofstream *results) {
     // each time and storing the average time in the variable "average_time"
     // then write the average time to the file with the results
     double average_time = 0;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 1; i++) {
+        cout << "Run: " << i+1 << endl;
         // Copy He original sudoku to the solved sudoku
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)
@@ -337,12 +342,10 @@ int main()
 {
     // Create a vector with the number of the puzzles to run the tests on
     // from 0 to 3000000
-    vector<int> puzzles;
-    for (int i = 3000000-1000; i < 3000000; i++)
-        puzzles.push_back(i);
+    vector<string> puzzles = {"easy", "medium", "hard"};
 
     // File name to store the results
-    string result_file_name = "./results.txt";
+    string result_file_name = "./results_16.txt";
     // Open the file
     ofstream result_file;
     result_file.open(result_file_name);
@@ -351,8 +354,11 @@ int main()
     for (int i = 0; i < puzzles.size(); i++) {
         // Generate filename appending the number of the puzzle to the prefix
         // ./test/rated/puzzles/9x9_ and the suffix .txt
-        string file_name = "./test/rated/puzzles/9x9_" + to_string(puzzles[i]) + ".txt";
-        profile(file_name, puzzles[i], &result_file);
+        // string file_name = "./test/rated/puzzles/9x9_" + to_string(puzzles[i]) + ".txt";
+        string file_name = "./test/16/16x16_" + puzzles[i] + ".txt";
+
+        cout << "Profiling: " << file_name << endl;
+        profile(file_name, i, &result_file);
 
         // If i is a multiple of 1000, print the number of puzzles solved
         if (i % 1000 == 0)
