@@ -338,7 +338,7 @@ int main()
     // Create a vector with the number of the puzzles to run the tests on
     // from 0 to 3000000
     vector<int> puzzles;
-    for (int i = 0; i < 1000; i++)
+    for (int i = 3000000-1000; i < 3000000; i++)
         puzzles.push_back(i);
 
     // File name to store the results
