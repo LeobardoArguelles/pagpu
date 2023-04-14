@@ -16,6 +16,10 @@ data[:,1] /= 1000
 # Graph the data as a connected line and enumerate the puzzles from 900 to 1000
 plt.plot([x for x in range(900, 1000)], data[900:,1], 'k-')
 
+# Annotate each point with the value of the first column
+for i, txt in enumerate(data[900:,0]):
+    plt.annotate(txt, (i+900, data[900+i,1]))
+
 # Set the x and y axis labels
 plt.xlabel('Puzzle #')
 plt.ylabel('Time (us)')
