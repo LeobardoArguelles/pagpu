@@ -13,10 +13,10 @@ namespace fs = std::filesystem;
 using namespace std;
 
 
-#define N 16
+#define N 25
 #define UNASSIGNED 0
 // #define dir "./test/rated/puzzles/"
-#define dir "./test/16/"
+#define dir "./test/25/"
 #define MAX_TEST 100
 
 /* A utility function to print grid */
@@ -345,7 +345,7 @@ int main()
     vector<string> puzzles = {"easy", "medium", "hard"};
 
     // File name to store the results
-    string result_file_name = "./results_16.txt";
+    string result_file_name = "./results_25.txt";
     // Open the file
     ofstream result_file;
     result_file.open(result_file_name);
@@ -355,7 +355,7 @@ int main()
         // Generate filename appending the number of the puzzle to the prefix
         // ./test/rated/puzzles/9x9_ and the suffix .txt
         // string file_name = "./test/rated/puzzles/9x9_" + to_string(puzzles[i]) + ".txt";
-        string file_name = "./test/16/16x16_" + puzzles[i] + ".txt";
+        string file_name = "./test/25/25x25_" + puzzles[i] + ".txt";
 
         cout << "Profiling: " << file_name << endl;
         profile(file_name, i, &result_file);
