@@ -22,3 +22,7 @@ Links de la práctica:
 4) **Práctica 04: Multiplicación de matrices en CUDA**
   - Overleaf: [https://www.overleaf.com/2411979666nptdycwgspbx](https://www.overleaf.com/2411979666nptdycwgspbx)
   - Colab: [https://colab.research.google.com/drive/1mgPWA2M_F8x0mQhj9ulEr_alYeUv5QL-?usp=sharing](https://colab.research.google.com/drive/1mgPWA2M_F8x0mQhj9ulEr_alYeUv5QL-?usp=sharing)
+  
+5) **Práctica 05: Manejo de memoria en CUDA**
+  - Overleaf: [https://www.overleaf.com/6141674915fgxdnsnfqjtj](https://www.overleaf.com/6141674915fgxdnsnfqjtj)
+  - Colab: [https://colab.research.google.com/drive/11YSBUelRS2dUE2SWdHN3vy4iLkqJt9hu?usp=sharing](https://colab.research.google.com/drive/11YSBUelRS2dUE2SWdHN3vy4iLkqJt9hu?usp=sharing)
