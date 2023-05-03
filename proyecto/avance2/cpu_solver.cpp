@@ -271,6 +271,8 @@ void profile(string file_name, int file_number, ofstream *results) {
 
     string line;
 
+    int times = 1;
+
     // Create a 2D array of size N*N to store the unsolved sudoku
     // and a 2D array of size N*N to store the solved sudoku
     int grid[N][N];
@@ -297,7 +299,7 @@ void profile(string file_name, int file_number, ofstream *results) {
     // each time and storing the average time in the variable "average_time"
     // then write the average time to the file with the results
     double average_time = 0;
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < times; i++) {
         cout << "Run: " << i+1 << endl;
         // Copy He original sudoku to the solved sudoku
         for (int i = 0; i < N; i++)
@@ -323,7 +325,7 @@ void profile(string file_name, int file_number, ofstream *results) {
     }
 
     // Calculate the average time
-    average_time /= 10;
+    average_time /= times;
 
     // Write the average time to the file with the results
     cout << "Average time for file #" << file_number << ": " << average_time << endl;
@@ -345,7 +347,7 @@ int main()
     vector<string> puzzles = {"easy", "medium", "hard"};
 
     // File name to store the results
-    string result_file_name = "./results_25.txt";
+    string result_file_name = "./results_25_V2.txt";
     // Open the file
     ofstream result_file;
     result_file.open(result_file_name);

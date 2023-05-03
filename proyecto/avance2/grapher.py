@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read the file results.txt into a numpy array. Treat it as a csv file.
-data = np.genfromtxt('results_25.txt', delimiter=',')
+data = np.genfromtxt('results_16.txt', delimiter=',')
 
 # Sort the array by the second column
 data = data[data[:,1].argsort()]
